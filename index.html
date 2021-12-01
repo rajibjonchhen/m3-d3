@@ -48,24 +48,29 @@
 
     <script>
 
-import { createClient } from 'pexels';
-
-const client = createClient('563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be');
-const query = 'Nature';
-
-client.photos.search({ query, per_page: 1 }).then(photos => {...});
 
 
+fetch("https://www.pexels.com/api/documentation/?language=javascript#photos-search")
+.then(response =>response.json())
+.then(jsonData =>{
+    console.log(jsonData)
+})
 
-        curl -H "Authorization: 563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be" \
-"https://api.pexels.com/v1/search?query=nature&per_page=1"
+
+// import { createClient } from 'pexels';
+
+// const client = createClient('563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be');
+// const query = 'Nature';
+
+// client.photos.search({ query, per_page: 1 })
+// .then(photos => photos.json())
+// .then(jsonPhotos => {
+//     console.log(photos)
+// })
 
 
-        fetch(" curl -H"Authorization: 563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be" \"https://api.pexels.com/v1/search?query=nature&per_page=1"")
-        .then(response => response.json())
-        .then(jsonData => {
-            console.log(jsonData)
-        })
+
+        
 
 
 

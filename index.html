@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <title>M3-D2 Pair Exercise</title>
+    <style>
+       nav button{
+           width: 200px;
+       }
+    </style>
 </head>
 
 <body>
-    <!-- Just an image -->
+    
     <nav class="navbar navbar-dark bg-dark ">
         <a class="navbar-brand" href="#">
             <span><i>Rajib and Dostan</i></span>
         </a>
         <div>
-            <button id="primaryBtn" class="btn bg-primary">Load Image</button>
-            <button id="secondaryBtn" class="btn btn-secondary">Load Secondary Image</button>
+            <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load Image</button>
+            <button id="secondaryBtn" class="btn btn-secondary" onclick="secondaryImg(event)">Load Secondary Image</button>
+            <button id="thirdBtn" class="btn btn-warning" onclick="jumboImg(event)">Change Image</button>
         </div>
     </nav>
 
@@ -41,29 +47,45 @@
 
 
     <script>
-        fetch("https://www.pexels.com/api/documentation/?language=javascript#photos-search")
+
+import { createClient } from 'pexels';
+
+const client = createClient('563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be');
+const query = 'Nature';
+
+client.photos.search({ query, per_page: 1 }).then(photos => {...});
+
+
+
+        curl -H "Authorization: 563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be" \
+"https://api.pexels.com/v1/search?query=nature&per_page=1"
+
+
+        fetch(" curl -H"Authorization: 563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be" \"https://api.pexels.com/v1/search?query=nature&per_page=1"")
         .then(response => response.json())
         .then(jsonData => {
             console.log(jsonData)
         })
 
-            arrToFetch= ["https://api.pexels.com/v1/search?query=your-query","https://api.pexels.com/v1/search?query=your-secondary-query"]
+
+
+    //         arrToFetch= ["https://api.pexels.com/v1/search?query=your-query","https://api.pexels.com/v1/search?query=your-secondary-query"]
        
-            const addEventBtn = function(){
-        let btn = document.querySelectorAll('nav button')
-        for(let i=0; i < btn.length; i++)
-            btn[i].addEvenListner ("onclick", letsFetch)
-       }
+    //         const addEventBtn = function(){
+    //     let btn = document.querySelectorAll('nav button')
+    //     for(let i=0; i < btn.length; i++)
+    //         btn[i].addEvenListner ("onclick", letsFetch)
+    //    }
         
     
 
-        const letsFetch = function(){
-            fetch(`${arrToFetch[0]}`)
-        .then(response => response.json())
-        .then(jsonData => {
-            console.log(jsonData)
-        })
-        }
+    //     const letsFetch = function(){
+    //         fetch(`${arrToFetch[0]}`)
+    //     .then(response => response.json())
+    //     .then(jsonData => {
+    //         console.log(jsonData)
+    //     })
+        // }
     </script>
 
     <!-- from bootstrap -->

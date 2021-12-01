@@ -12,6 +12,24 @@
        nav button{
            width: 200px;
        }
+
+       nav input{
+           width:200px;
+           height: 39px;
+       }
+       
+
+
+       .card>.imgDiv{
+        width: 100%; 
+        height: 250px;
+        overflow: hidden;
+       }
+
+       .card>.imgDiv img{
+        width: 350px; 
+        height: 250px; 
+       }
     </style>
 </head>
 
@@ -88,7 +106,7 @@ fetch("https://api.pexels.com/v1/search?query=animals", {
     pictures= jsonData.photos
     let row = document.querySelector(".row")
    for(let i = 0; i < pictures.length; i++)
-   row.innerHTML +=`<div class="col-3 mt-4"> <div class="card">
+   row.innerHTML +=`<div class="col-12 col-sm-6 col-md-4 col-lg-2 mt-4"> <div class="card">
   <img src="${pictures[i].src.medium}" width="250px" height="250px" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title"></h5>

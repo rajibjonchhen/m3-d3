@@ -46,6 +46,24 @@
         .then(jsonData => {
             console.log(jsonData)
         })
+
+            arrToFetch= ["https://api.pexels.com/v1/search?query=your-query","https://api.pexels.com/v1/search?query=your-secondary-query"]
+       
+            const addEventBtn = function(){
+        let btn = document.querySelectorAll('nav button')
+        for(let i=0; i < btn.length; i++)
+            btn[i].addEvenListner ("onclick", letsFetch)
+       }
+        
+    
+
+        const letsFetch = function(){
+            fetch(`${arrToFetch[0]}`)
+        .then(response => response.json())
+        .then(jsonData => {
+            console.log(jsonData)
+        })
+        }
     </script>
 
     <!-- from bootstrap -->

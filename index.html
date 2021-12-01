@@ -22,6 +22,7 @@
             <span><i>Rajib and Dostan</i></span>
         </a>
         <div>
+            <input  type="text" placeholder="what you want to see">
             <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load Image</button>
             <button id="secondaryBtn" class="btn btn-secondary" onclick="secondaryImg(event)">Load Secondary Image</button>
             <button id="thirdBtn" class="btn btn-warning" onclick="jumboImg(event)">Change Image</button>
@@ -49,48 +50,61 @@
     <script>
 
 
-
-fetch("https://www.pexels.com/api/documentation/?language=javascript#photos-search")
+fetch("https://api.pexels.com/v1/search?query=coffee", {
+    "method" :"GET",
+   "headers": {
+     authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
+   } 
+})
 .then(response =>response.json())
 .then(jsonData =>{
+   
+   
+    
     console.log(jsonData)
 })
 
 
-// import { createClient } from 'pexels';
 
-// const client = createClient('563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be');
-// const query = 'Nature';
+// use input
+// let lookFor
+// const inputReader = function(){
+//     let myChoice = document.querySelector('nav input:first-of-type')
+//     myChoice.addEventListner ("onkeyup", function(){
+//         lookFor = myChoice.value
+//     })
+// }
+// 
 
-// client.photos.search({ query, per_page: 1 })
-// .then(photos => photos.json())
-// .then(jsonPhotos => {
-//     console.log(photos)
+
+// const primaryImg = function(eventData){
+
+// fetch("https://api.pexels.com/v1/search?query=coacktails", {
+//     "method" :"GET",
+//    "headers": {
+//      authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
+//    } 
 // })
+// .then(response =>response.json())
+// .then(jsonData =>{
+   
+//     pictures= jsonData.photos
+//     let row = document.querySelector(".row")
+//    for(let i = 0; i < pictures.length; i++)
+//    row.innerHTML +=`<div class="col-3 mt-4"> <div class="card">
+//   <img src="${pictures[i]}" class="card-img-top" alt="...">
+//   <div class="card-body">
+//     <h5 class="card-title"></h5>
+//     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+//     <a href="#" class="btn btn-primary">Go somewhere</a>
+//   </div>
+//   </div>
+// </div>`
+// })
+// }
 
 
 
-        
-
-
-
-    //         arrToFetch= ["https://api.pexels.com/v1/search?query=your-query","https://api.pexels.com/v1/search?query=your-secondary-query"]
-       
-    //         const addEventBtn = function(){
-    //     let btn = document.querySelectorAll('nav button')
-    //     for(let i=0; i < btn.length; i++)
-    //         btn[i].addEvenListner ("onclick", letsFetch)
-    //    }
-        
-    
-
-    //     const letsFetch = function(){
-    //         fetch(`${arrToFetch[0]}`)
-    //     .then(response => response.json())
-    //     .then(jsonData => {
-    //         console.log(jsonData)
-    //     })
-        // }
     </script>
 
     <!-- from bootstrap -->

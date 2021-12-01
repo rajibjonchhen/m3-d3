@@ -59,14 +59,11 @@ fetch("https://api.pexels.com/v1/search?query=coffee", {
 .then(response =>response.json())
 .then(jsonData =>{
    
-   
-    
-    console.log(jsonData)
+    console.log(jsonData.photos[0].src.medium)
 })
 
 
 
-// use input
 // let lookFor
 // const inputReader = function(){
 //     let myChoice = document.querySelector('nav input:first-of-type')
@@ -74,34 +71,34 @@ fetch("https://api.pexels.com/v1/search?query=coffee", {
 //         lookFor = myChoice.value
 //     })
 // }
-// 
 
 
-// const primaryImg = function(eventData){
 
-// fetch("https://api.pexels.com/v1/search?query=coacktails", {
-//     "method" :"GET",
-//    "headers": {
-//      authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
-//    } 
-// })
-// .then(response =>response.json())
-// .then(jsonData =>{
+const primaryImg = function(eventData){
+
+fetch("https://api.pexels.com/v1/search?query=animals", {
+    "method" :"GET",
+   "headers": {
+     authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
+   } 
+})
+.then(response =>response.json())
+.then(jsonData =>{
    
-//     pictures= jsonData.photos
-//     let row = document.querySelector(".row")
-//    for(let i = 0; i < pictures.length; i++)
-//    row.innerHTML +=`<div class="col-3 mt-4"> <div class="card">
-//   <img src="${pictures[i]}" class="card-img-top" alt="...">
-//   <div class="card-body">
-//     <h5 class="card-title"></h5>
-//     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-//     <a href="#" class="btn btn-primary">Go somewhere</a>
-//   </div>
-//   </div>
-// </div>`
-// })
-// }
+    pictures= jsonData.photos
+    let row = document.querySelector(".row")
+   for(let i = 0; i < pictures.length; i++)
+   row.innerHTML +=`<div class="col-3 mt-4"> <div class="card">
+  <img src="${pictures[i].src.medium}" width="250px" height="250px" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  </div>
+</div>`
+})
+}
 
 
 

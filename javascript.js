@@ -1,5 +1,5 @@
 const grandWrap = () => {
-  fetch(`https://api.pexels.com/v1/search?query=your-query`, {
+  fetch(`https://api.pexels.com/v1/search?query=nature`, {
     headers: {
       Authorization: "563492ad6f917000010000013e0f770e160941b08a1bfcaa8e7cabc6",
     },
@@ -26,4 +26,9 @@ const grandWrap = () => {
       });
     });
 };
-// window.onload;
+window.onload = () => {
+  const btn = document.getElementById("testBtn");
+  btn.addEventListener("click", function (event) {
+    event.target.parentElement.remove();
+  });
+};

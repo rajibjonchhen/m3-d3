@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <title>M3-D2 Pair Exercise</title>
     <style>
         body{
@@ -17,13 +18,32 @@
        }
 
        nav input{
-           width:200px;
+           width:250px;
            height: 39px;
+           border-radius: 20px;;
+           padding: 2px 10px;
+           border: 4px solid rgb(146, 32, 32);
+           box-sizing: border-box;
        }
-       
+
+       nav i{
+           font-weight: 900;
+           cursor: pointer;
+       }
+       .searchBox{
+           position: relative;
+       }
+       #searchBtn{
+        position:absolute;
+        right:10px;
+        top:8px;
+       }
+
        .jumbotron{
            background-repeat: none;
            background-position: center;
+           width:100%;
+           min-height:400PX;
            
        }
 
@@ -46,11 +66,13 @@
         <a class="navbar-brand" href="#">
             <span><i>Rajib and Dostan</i></span>
         </a>
-        <div>
-            <input  id="myChoice" type="text" placeholder=" what do you want to see">
-            <button id="secondaryBtn" class="btn btn-secondary" onclick="secondaryImg(event)">Load Secondary Image</button>
-            <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load Image</button>
-            <button id="thirdBtn" class="btn btn-warning" onclick="jumboImg(event)">Change Image</button>
+        <div class="d-flex">
+            <button id="thirdBtn" class="btn btn-warning" onclick="jumboImg(event)">Create jumbotron</button>
+            <div class="searchBox">
+                <input  id="search" type="text" placeholder=" type to search">
+               <a href=""> <i id="searchBtn" class="bi bi-search" onclick="secondaryImg(event)"></i></a>
+            </div>
+            <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load More Image</button>
         </div>
     </nav>
 
@@ -87,7 +109,7 @@ fetch("https://api.pexels.com/v1/search?query=nature", {
             <hr class="my-4">
             <p><a href="${pictures[1].src.large}"> see the picture</a></p>
             <a class="btn btn-primary btn-lg" href="#" role="button">Photographer ${pictures[1].photographer_id} </a></div>
-            <div><img src="${pictures[1].src.large}" width="450px"  height="370px"alt=""></div>
+            <div></div>
         </div>`
 })
 }
@@ -95,7 +117,7 @@ fetch("https://api.pexels.com/v1/search?query=nature", {
 
 const primaryImg = function(eventData){
 
-fetch("https://api.pexels.com/v1/search?query=animals", {
+fetch("https://api.pexels.com/v1/search?query=people", {
     "method" :"GET",
    "headers": {
      authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
@@ -125,18 +147,19 @@ const hideCard = function(eventData){
     let btn = document.querySelectorAll(".card button")
     for(let i = 0; i < cards.length; i++){
         if(btn[i].clicked===true){
-            cards[i].style.opacity = 0
+            card[i].style.opacity = 0
         }
     }
 }
 
 let lookFor
 const inputReader = function(event){
-    let myChoice = document.querySelector('myChoice')
-    myChoice.addEventListener ("onkeyup", function(){
-        lookFor = myChoice.value
+    myChoice.addEventListener ("change", function(){
+        myChoice = document.querySelector('search').value
+        
     })
 }
+
 inputReader()
 console.log(lookFor)
 

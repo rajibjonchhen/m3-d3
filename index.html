@@ -49,14 +49,9 @@
 
     <main>
 
-        <div class="jumbotron">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-                to featured content or information.</p>
-            <hr class="my-4">
-            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-        </div>
+       <article>
+
+       </article>
 
         <div class="row">
 
@@ -67,8 +62,8 @@
 
     <script>
 
-
-fetch("https://api.pexels.com/v1/search?query=coffee", {
+const jumboImg = function(eventData){
+fetch("https://api.pexels.com/v1/search?query=nature", {
     "method" :"GET",
    "headers": {
      authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
@@ -76,10 +71,19 @@ fetch("https://api.pexels.com/v1/search?query=coffee", {
 })
 .then(response =>response.json())
 .then(jsonData =>{
-   
-    console.log(jsonData.photos[0].src.medium)
+   let pictures = jsonData.photos
+   console.log(pictures[0].src.large)
+   let article = document.querySelector("article")
+    article.innerHTML = ` <div class="jumbotron d-flex justify-content-around" style="background-color:url(${pictures[1].src.large});background-color:palegreen">
+    <div><h1 class="display-4"> ${pictures[1].photographer} </h1>
+            <p class="lead">Wel-Come to the nature</p>
+            <hr class="my-4">
+            <p><a href="${pictures[1].src.large}"> see the picture</a></p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Photographer ${pictures[1].photographer_id} </a></div>
+            <div><img src="${pictures[1].src.large}" width="450px"  height="370px"alt=""></div>
+        </div>`
 })
-
+}
 
 
 // let lookFor
@@ -89,6 +93,8 @@ fetch("https://api.pexels.com/v1/search?query=coffee", {
 //         lookFor = myChoice.value
 //     })
 // }
+
+
 
 
 
@@ -105,7 +111,7 @@ fetch("https://api.pexels.com/v1/search?query=animals", {
    
     pictures= jsonData.photos
     let row = document.querySelector(".row")
-   for(let i = 0; i < pictures.length; i++)
+   for(let i = 0; i < 12; i++)
    row.innerHTML +=`<div class="col-12 col-sm-6 col-md-4 col-lg-2 mt-4"> <div class="card">
   <img src="${pictures[i].src.medium}" width="250px" height="250px" class="card-img-top" alt="...">
   <div class="card-body">

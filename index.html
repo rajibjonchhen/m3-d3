@@ -9,6 +9,9 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <title>M3-D2 Pair Exercise</title>
     <style>
+        body{
+            background-color: black;
+        }
        nav button{
            width: 200px;
        }
@@ -18,7 +21,11 @@
            height: 39px;
        }
        
-
+       .jumbotron{
+           background-repeat: none;
+           background-position: center;
+           
+       }
 
        .card>.imgDiv{
         width: 100%; 
@@ -40,9 +47,9 @@
             <span><i>Rajib and Dostan</i></span>
         </a>
         <div>
-            <input  type="text" placeholder="what you want to see">
-            <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load Image</button>
+            <input  id="myChoice" type="text" placeholder=" what do you want to see">
             <button id="secondaryBtn" class="btn btn-secondary" onclick="secondaryImg(event)">Load Secondary Image</button>
+            <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load Image</button>
             <button id="thirdBtn" class="btn btn-warning" onclick="jumboImg(event)">Change Image</button>
         </div>
     </nav>
@@ -74,7 +81,7 @@ fetch("https://api.pexels.com/v1/search?query=nature", {
    let pictures = jsonData.photos
    console.log(pictures[0].src.large)
    let article = document.querySelector("article")
-    article.innerHTML = ` <div class="jumbotron d-flex justify-content-around" style="background-color:url(${pictures[1].src.large});background-color:palegreen">
+    article.innerHTML = ` <div class="jumbotron d-flex justify-content-around" style="background-image:url(${pictures[1].src.large})">
     <div><h1 class="display-4"> ${pictures[1].photographer} </h1>
             <p class="lead">Wel-Come to the nature</p>
             <hr class="my-4">
@@ -84,18 +91,6 @@ fetch("https://api.pexels.com/v1/search?query=nature", {
         </div>`
 })
 }
-
-
-// let lookFor
-// const inputReader = function(){
-//     let myChoice = document.querySelector('nav input:first-of-type')
-//     myChoice.addEventListner ("onkeyup", function(){
-//         lookFor = myChoice.value
-//     })
-// }
-
-
-
 
 
 const primaryImg = function(eventData){
@@ -117,7 +112,7 @@ fetch("https://api.pexels.com/v1/search?query=animals", {
   <div class="card-body">
     <h5 class="card-title"></h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="#" onclick="hideCard(event)" class="btn btn-primary">Hide</a>
   </div>
   </div>
 </div>`
@@ -125,6 +120,25 @@ fetch("https://api.pexels.com/v1/search?query=animals", {
 }
 
 
+const hideCard = function(eventData){
+    let card = document.querySelectorAll(".card")
+    let btn = document.querySelectorAll(".card button")
+    for(let i = 0; i < cards.length; i++){
+        if(btn[i].clicked===true){
+            cards[i].style.opacity = 0
+        }
+    }
+}
+
+let lookFor
+const inputReader = function(event){
+    let myChoice = document.querySelector('myChoice')
+    myChoice.addEventListener ("onkeyup", function(){
+        lookFor = myChoice.value
+    })
+}
+inputReader()
+console.log(lookFor)
 
     </script>
 

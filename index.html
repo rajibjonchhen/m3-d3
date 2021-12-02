@@ -70,7 +70,7 @@
             <button id="thirdBtn" class="btn btn-warning" onclick="jumboImg(event)">Create jumbotron</button>
             <div class="searchBox">
                 <input  id="search" type="text" placeholder=" type to search">
-               <a href=""> <i id="searchBtn" class="bi bi-search" onclick="secondaryImg(event)"></i></a>
+                <i id="searchBtn" class="bi bi-search" onclick="secondaryImg()"></i>
             </div>
             <button id="primaryBtn" class="btn bg-primary" onclick="primaryImg(event)">Load More Image</button>
         </div>
@@ -90,6 +90,11 @@
 
 
     <script>
+
+        const secondaryImg = function(){
+            let search = document.getElementById('search').value
+            console.log(search)
+        }
 
 const jumboImg = function(eventData){
 fetch("https://api.pexels.com/v1/search?query=nature", {
@@ -115,9 +120,9 @@ fetch("https://api.pexels.com/v1/search?query=nature", {
 }
 
 
-const primaryImg = function(eventData){
+const primaryImg = function(query){
 
-fetch("https://api.pexels.com/v1/search?query=people", {
+fetch("https://api.pexels.com/v1/search?query=" + query, {
     "method" :"GET",
    "headers": {
      authorization:  "563492ad6f9170000100000149a2e1e7caec4ab2a5ca9016090d41be"
@@ -152,16 +157,25 @@ const hideCard = function(eventData){
     }
 }
 
-let lookFor
-const inputReader = function(event){
-    myChoice.addEventListener ("change", function(){
-        myChoice = document.querySelector('search').value
+
+// const inputReader = function(event){
+
+//     myChoice.addEventListener ("keyup", function(){
+//         myChoice = document.querySelector('search').value
         
+//     })
+// }
+
+window.onload = function(){
+    let search = document.getElementById('search')
+    search.addEventListener ("keyup", (event)=>{
+       console.log( event.keyCode)
+       if(event.keyCode === 13) {
+           primaryImg(event.target.value)
+            //function that takes a string as aprameter
+       }
     })
 }
-
-inputReader()
-console.log(lookFor)
 
     </script>
 

@@ -95,7 +95,22 @@
 
     <script>
 
+        const secondaryImg = function(event){ 
+
+        let search = document.getElementById('search')
+        primaryImg(search.value)
+        }                            
         
+        const searchEnter = function(event){ 
+            let search = document.getElementById('search')
+            search.addEventListener ("keyup", (event)=>{
+                console.log( event.keyCode)
+                if(event.keyCode === 13) {
+                primaryImg(event.target.value)
+                    
+                } 
+        })   
+    }
          
                                         
       
